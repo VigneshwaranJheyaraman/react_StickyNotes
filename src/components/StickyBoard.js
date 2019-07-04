@@ -16,7 +16,7 @@ class StickyBoard extends Component
             menuLeft: "",
             menuTop:"",
             stickyNoteModalDisplay:"none",
-            BoardId:"board"+getBoardFlagFromLocalStorage(),
+            BoardId:"",
             stickyBoard: {
                 lastLength:0,
                 sNotes:{}
@@ -33,7 +33,7 @@ class StickyBoard extends Component
     }
     componentWillMount()
     {   
-        var stickyboard = getStickyBoardFromLocalStorage(this.state.BoardId);
+        var stickyboard = getStickyBoardFromLocalStorage(`board${this.props.match.params.id}`);
         if(stickyboard !==  null)
         {
             this.setState({ stickyBoard: stickyboard, lastLength: getLastLengthForStickyBoardFromLocalStorage()});
@@ -47,7 +47,7 @@ class StickyBoard extends Component
     }
     componentWillUpdate()
     {
-        setStickyNotesToLocalStorage(this.state.BoardId, this.state.stickyBoard, this.state.lastLength);
+        setStickyNotesToLocalStorage(`board${this.props.match.params.id}`, this.state.stickyBoard, this.state.lastLength);
     }
     customContextMenu(e)
     {

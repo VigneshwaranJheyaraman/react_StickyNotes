@@ -12,7 +12,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Switch><Route exact path="/" component={StickyNotes}></Route>
-          <Route path="/newBoard" component={StickyBoard}></Route></Switch>
+          <Route path="/newBoard/:id" component={StickyBoard}></Route></Switch>
         </BrowserRouter>
       </Provider>
     </div>

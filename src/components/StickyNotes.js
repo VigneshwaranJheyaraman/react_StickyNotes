@@ -170,6 +170,7 @@ export class StickyNotes extends Component
     render()
     {
         var bc = this.state.boardCount;
+        var path =`/newBoard/${bc}`;
         return (
         <div onContextMenu={this.customContextMenu} id="note-area" onDragOver={(e) => {e.preventDefault();}} onDrop={this.dropStickyNotes}>
                 <Tips display={this.state.helpAndTipsDisplay} 
@@ -177,7 +178,7 @@ export class StickyNotes extends Component
                 <Menu newTask={this.addNewNote} newCheckList ={this.checkList} left={this.state.menuLeft}
                 top={this.state.menuTop} display = {this.state.menuDisplay} onlyOneTask={false}/>
                 <div className="add-button">
-                    <Link to="/newBoard" target="_blank"><Button className="btn add" iclassName="fa fa-plus" onClick={(e) => {this.setState({boardCount:bc+=1})}}/></Link>
+                    <Link to={path} target="_blank"><Button className="btn add" iclassName="fa fa-plus" onClick={(e) => {this.setState({boardCount:bc+=1})}}/></Link>
                 </div>
                 <div>
                     <ul>
