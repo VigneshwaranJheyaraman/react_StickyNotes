@@ -1,33 +1,339 @@
-.App {
-  text-align: center;
+html, body, #root
+{
+    width: 100%;
+    height: 100%;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.stick-note-area
+{
+    background-color: #666;
+    text-align: center;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    position: relative;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#note-area
+{
+    width: 100%;
+    height: 100%;
 }
-
-.App-link {
-  color: #61dafb;
+body
+{
+    color: #fff;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul, li
+{
+    list-style: none;
+}
+ul
+{
+    overflow: hidden;
+    padding:3em;
+}
+ul li button h2
+{
+    font-size: 130%;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.colorChooser
+{
+    width:30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: transparent;
+    border:0px;
+}
+ul li button p
+{
+    font-family: 'Just Another Hand', cursive;
+    font-size: 150%;
+}
+ul li button
+{
+    text-decoration: none;
+    color: black;
+    background-color: antiquewhite;
+    display: block;
+    height:200px;
+    width: 200px;
+    padding: 1em;
+    -moz-box-shadow : 5px 6px 7px rgba(40,40,20, 0.7);
+    -webkit-box-shadow : 5px 6px 7px rgba(40, 40, 20,0.7);
+    box-shadow: 5px 6px 7px rgba(40, 40, 20,0.7);
+}
+ul li:nth-child(n) button
+{
+    -webkit-transform: rotate(6deg);
+    transform:  rotate(6deg);
+    -moz-transform:  rotate(6deg);
+    position: absolute;
+    top:5px;
+}
+ul li:nth-child(2n) button
+{
+    -webkit-transform: rotate(-7deg);
+    transform:  rotate(-7deg);
+    -moz-transform:  rotate(-7deg);
+    position: absolute;
+    top:5px;
+}
+ul li:nth-child(3n) button
+{
+    -webkit-transform: rotate(-5deg);
+    transform:  rotate(-5deg);
+    -moz-transform:  rotate(-5deg);
+    position: absolute;
+    top:-5px;
+}
+ul li:nth-child(5n) button
+{
+    -webkit-transform: rotate(-2deg);
+    transform:  rotate(-2deg);
+    -moz-transform:  rotate(-2deg);
+    position: absolute;
+    top:5px;
+}
+/* ul li button:focus
+{
+    -webkit-animation: expand linear;
+    -webkit-animation-duration: 0.7s;
+    animation: expand linear;
+    animation-duration: 0.7s;
+    animation-fill-mode: forwards;
+} */
+/* ul li button:hover
+{
+    -moz-box-shadow :15px 16px 17px rgba(30, 30, 40,0.7);
+    -webkit-box-shadow:15px 16px 17px rgba(30, 30, 40,0.7);
+    box-shadow: 15px 16px 17px rgba(30, 30, 40,0.7);
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    position: relative;
+    z-index: 5;
+} */
+ul li
+{
+    margin: 5px;
+    float: left;
+}
+.add
+{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+.add-button
+{
+    margin-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 5px;
+    text-align: center;
+    position: relative;
+}
+.add i
+{
+    font-size: 140%;
+}
+.menu
+{
+    width: 200px;
+    box-shadow: 0 4px 5px 6px rgba(33, 33, 33, 0.5);
+    position: absolute;
+    display: none;
+}
+.menu .menu-options
+{
+    list-style: none;
+    padding:10px;
+}
+.menu .menu-options .menu-option
+{
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+    padding: 6px;
+    cursor: pointer;
+}
+.menu .menu-options .menu-option:hover
+{
+    background-color: #666;
+}
+.checklist
+{
+    border: 1px solid dotted darkgray;
+}
+.checklist ul
+{
+    cursor : pointer;
+    position: relative;
+    list-style-type: none;
+    font-size: 19px;
+    transition: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.checklist ul li:nth-child(odd)
+{
+    background-color: cadetblue;
+}
+.checklist ul li:nth-child(even)
+{
+    background-color: darkgray;
+}
+.checklist ul li:hover
+{
+    background-color: #909090;
+}
+.checklist input
+{
+    margin:0px;
+    border:none;
+    height: 40px;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+.checklist span
+{
+    padding: 10px;
+    width: 20%;
+    margin-left: 10px;
+    height: 40px;
+    background-color: green;
+    color: black;
+    float: left;
+    text-align: center;
+    font-size: 24px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.checklist span:hover
+{
+    background-color: lightseagreen;
+}
+.modal
+{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.modal-content
+{
+    position: relative;
+    background-color: lightyellow;
+    margin:auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 10px rgba(0, 0, 0, 0.5);
+    -webkit-animation: slideDown;
+    -webkit-animation-duration: 0.5s;
+    animation-name: slideDown;
+    animation-duration: 0.5s;
+}
+.modal-header, .modal-footer
+{
+    padding: 5px;
+    background-color: aliceblue;
+    color:black;
+}
+.close
+{
+    color:gray;
+    float: right;
+    font-size: 24px;
+    font-weight: bolder;
+}
+.close:hover
+{
+    color:red;
+}
+.modal-body
+{
+    padding: 5px;
+    color:black;
+}
+.stickyBoard
+{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    background:sandybrown url('./img/board.jpg');
+}
+@-webkit-keyframes expand
+{
+    from{top:0px}
+    to{top:100px;width:300px;height:300px;}
+}
+@keyframes expand
+{
+    from{top:0px}
+    to{top:100px;width:300px;height:300px;}
+}
+@-webkit-keyframes slideDown
+{
+    from{top:-300px;opacity: 0;}
+    to{top:0px; opacity: 1;}
+}
+@keyframes slideDown
+{
+    from{top:-300px;opacity: 0;}
+    to{top:0px; opacity: 1;}
+}
+@media (min-width:576px)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width:540px;
+    }
+}
+@media (min-width: 768px)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width: 720px;
+    }
+}
+@media (min-width: 992px)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width: 960px;
+    }
+}
+@media (min-width: 1200px)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width: 1140px;
+    }
+}
+@media (min-width: 1500x)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width: 1460px;
+    }
+}
+@media (min-width: 1679px)
+{
+    .stick-note-area, .stickyBoard
+    {
+        width: 1640px;
+    }
 }

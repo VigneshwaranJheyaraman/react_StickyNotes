@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import StickyNotes from './components/StickyNotes';
+import {Provider} from 'react-redux';
+import store from './redux/store';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import StickyBoard from './components/StickyBoard';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="stick-note-area" >
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch><Route exact path="/" component={StickyNotes}></Route>
+          <Route path="/newBoard" component={StickyBoard}></Route></Switch>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
