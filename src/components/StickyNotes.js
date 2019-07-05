@@ -36,6 +36,7 @@ export class StickyNotes extends Component
         this.addNewCheckListFromModal = this.addNewCheckListFromModal.bind(this);
         this.startDrag = this.startDrag.bind(this);
         this.dropStickyNotes = this.dropStickyNotes.bind(this);
+        this.focusTextInput = this.focusTextInput.bind(this);
     }
     addNewNote(e)
     {
@@ -129,7 +130,7 @@ export class StickyNotes extends Component
     componentDidUpdate()
     {
         setLocalStorage(this.state.lastTask.toString(), this.state.stickyNotes, cl);
-        setBoardCountToLocalStorage(this.state.boardCount)
+        setBoardCountToLocalStorage(this.state.boardCount);
     }
     componentWillUnmount()
     {
@@ -140,10 +141,21 @@ export class StickyNotes extends Component
             this.setState({menuDisplay:"none", helpAndTipsDisplay:"none"});
         });
     }
-    customContextMenu(e)
+    customContextMenu(nodeName,e)
     {
         e.preventDefault();
-        this.setState({menuLeft:`${(e.pageX-50)}px`,menuTop: `${e.pageY}px`,menuDisplay:"block"});
+        if(nodeName !== "INPUT")
+        {
+            this.setState({menuLeft:`${(e.pageX-50)}px`,menuTop: `${e.pageY}px`,menuDisplay:"block"});
+        }
+        else
+        {
+            e.target.focus();
+        }
+    }
+    focusTextInput()
+    {
+        this.textFocus.current.focus();
     }
     toggleCheckListRender(id)
     {
@@ -176,7 +188,9 @@ export class StickyNotes extends Component
         var bc = this.state.boardCount;
         var path =`/newBoard/${bc}`;
         return (
-        <div onContextMenu={this.customContextMenu} id="note-area" onDragOver={(e) => {e.preventDefault();}} onDrop={this.dropStickyNotes}>
+        <div onContextMenu={(e) => {
+            this.customContextMenu(e.target.nodeName,e);
+        }} id="note-area" onDragOver={(e) => {e.preventDefault();}} onDrop={this.dropStickyNotes}>
                 <Tips display={this.state.helpAndTipsDisplay} 
                 closeClick = {(e)=> {this.setState({helpAndTipsDisplay:"none"})}}/>
                 <Menu newTask={this.addNewNote} newCheckList ={this.checkList} left={this.state.menuLeft}

@@ -5,13 +5,12 @@ html, body, #root
 }
 .stick-note-area
 {
-    background-color: #666;
     text-align: center;
-    width: 100%;
-    padding-right: 10px;
     padding-left: 10px;
-    margin-right: auto;
+    padding-right: 10px;
     margin-left: auto;
+    margin-right: auto;
+    width: 100%;
     height: 100%;
     position: relative;
 }
@@ -22,7 +21,7 @@ html, body, #root
 }
 body
 {
-    color: #fff;
+    background-color:#d3e6ff;
 }
 ul, li
 {
@@ -145,6 +144,8 @@ ul li
     box-shadow: 0 4px 5px 6px rgba(33, 33, 33, 0.5);
     position: absolute;
     display: none;
+    z-index: 99 !important;
+    background: gray;
 }
 .menu .menu-options
 {
@@ -310,41 +311,27 @@ ul li
 {
     .stick-note-area, .stickyBoard
     {
-        width:540px;
+        max-width:540px;
     }
 }
 @media (min-width: 768px)
 {
     .stick-note-area, .stickyBoard
     {
-        width: 720px;
+        max-width: 720px;
     }
 }
 @media (min-width: 992px)
 {
     .stick-note-area, .stickyBoard
     {
-        width: 960px;
+        max-width: 960px;
     }
 }
 @media (min-width: 1200px)
 {
     .stick-note-area, .stickyBoard
     {
-        width: 1140px;
-    }
-}
-@media (min-width: 1500x)
-{
-    .stick-note-area, .stickyBoard
-    {
-        width: 1460px;
-    }
-}
-@media (min-width: 1679px)
-{
-    .stick-note-area, .stickyBoard
-    {
-        width: 1640px;
+        max-width: 1140px;
     }
 }
