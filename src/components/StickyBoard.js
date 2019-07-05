@@ -4,6 +4,7 @@ import Menu from './Menu';
 import { getStickyBoardFromLocalStorage, setStickyNotesToLocalStorage, getLastLengthForStickyBoardFromLocalStorage } from '../stickyBoardUtil';
 import NewStickyNoteModal from './NewStickyNoteModal';
 import Note from './Note';
+import NotFound from './NotFound';
 class StickyBoard extends Component
 {
     constructor(props)
@@ -156,7 +157,7 @@ class StickyBoard extends Component
         if (parseInt(localStorage.getItem("nB")) < parseInt(this.props.match.params.id))
         {
             localStorage.removeItem(`board${this.props.match.params.id}`); 
-            return <div><h2>404 Not Found.</h2></div>
+            return <NotFound />
         }
         else
         {

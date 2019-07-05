@@ -21,14 +21,14 @@ export default function(state = initialState, action)
             };
             return st;
         case toogle_checkList:
-            var { id }  = action.payload;
+            var { idd }  = action.payload;
             var tSt = Object.assign({}, {
                 ...state,
                 byIds : {
                     ...state.byIds,
-                    [id]:{
-                        ...state.byIds[id],
-                        completed: !state.byIds[id].completed
+                    [idd]:{
+                        ...state.byIds[idd],
+                        completed: !state.byIds[idd].completed
                     }
                 }});
             return tSt;

@@ -7,9 +7,9 @@ export const addCList = (content, counterValue) => ({
     }
 });
 
-export const toggleCList = id => ({
+export const toggleCList = idd => ({
     type: toogle_checkList,
-    payload: { id }
+    payload: { idd }
 });
 
 export const setCListFilter = filter => ({
