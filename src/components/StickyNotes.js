@@ -161,11 +161,9 @@ export class StickyNotes extends Component
     {
         var newStickynote = this.state.stickyNotes;
         var key =parseInt(e.dataTransfer.getData("key"));
-        newStickynote[key].left=`${e.pageX}px`;
+        newStickynote[key].left=`${e.pageX-120}px`;
         newStickynote[key].top = `${e.pageY}px`;
-        this.setState({stickyNote:newStickynote}, () => {
-            console.log(this.state.stickyNotes);
-        });
+        this.setState({stickyNote:newStickynote});
     }
     render()
     {

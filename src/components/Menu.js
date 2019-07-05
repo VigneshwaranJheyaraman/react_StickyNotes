@@ -9,7 +9,7 @@ class Menu extends Component
                     <li className="menu-option" onClick= {this.props.newTask}>Create a new task</li>
                     {
                         this.props.onlyOne ?
-                        <li className="menu-option" onClick = {this.props.newCheckList}>Create a new Checklist</li>:""
+                        "":<li className="menu-option" onClick = {this.props.newCheckList}>Create a new Checklist</li>
                     }
                 </ul>
             </div>

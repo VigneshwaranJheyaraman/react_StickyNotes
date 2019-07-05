@@ -4,7 +4,11 @@ export function getStickyBoardFromLocalStorage(board_id)
 }
 export function setStickyNotesToLocalStorage(boardid, board, lastLen)
 {
-    localStorage.setItem(boardid, JSON.stringify(board));
+    console.log(boardid, lastLen, board);
+    if(boardid !== null)
+    {
+        localStorage.setItem(boardid, JSON.stringify(board));
+    }
     localStorage.setItem("lastIDSB",lastLen);
 }
 export function getLastLengthForStickyBoardFromLocalStorage()

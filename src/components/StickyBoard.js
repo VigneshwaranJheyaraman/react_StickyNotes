@@ -4,7 +4,6 @@ import Menu from './Menu';
 import { getStickyBoardFromLocalStorage, setStickyNotesToLocalStorage, getLastLengthForStickyBoardFromLocalStorage } from '../stickyBoardUtil';
 import NewStickyNoteModal from './NewStickyNoteModal';
 import Note from './Note';
-import { getBoardFlagFromLocalStorage } from '../util';
 class StickyBoard extends Component
 {
     constructor(props)
@@ -66,7 +65,7 @@ class StickyBoard extends Component
         //insert the stickyNotes in position
         var stickyId = parseInt(e.dataTransfer.getData("key"));
         var updatedStickyNote = this.state.stickyBoard.sNotes[stickyId];
-        updatedStickyNote.left =  `${e.pageX-50}px`;
+        updatedStickyNote.left =  `${e.pageX-120 / 2}px`;
         updatedStickyNote.top = `${e.pageY}px`;
         this.setState({stickyBoard:{
             ...this.state.stickyBoard,
@@ -152,8 +151,15 @@ class StickyBoard extends Component
     }
     render()
     {
-        return (
-            <div className="stickyBoard" onContextMenu={this.customContextMenu}  onDragOver={(e) => {e.preventDefault();}} onDrop={this.dropStickyNotes}>
+        if (parseInt(localStorage.getItem("nB")) < parseInt(this.props.match.params.id))
+        {
+            localStorage.removeItem(`board${this.props.match.params.id}`);
+            return <div><h2>404 Not Found.</h2></div>
+        }
+        else
+        {
+            return (
+                <div className="stickyBoard" onContextMenu={this.customContextMenu}  onDragOver={(e) => {e.preventDefault();}} onDrop={this.dropStickyNotes}>
             <div>
                 <Tips display = {this.state.helpAndTipsDisplay} />
                 <Menu display= {this.state.menuDisplay} newTask={this.addNewTask} top={this.state.menuTop} left={this.state.menuLeft} onlyOneTask={true}/>
@@ -171,7 +177,8 @@ class StickyBoard extends Component
                 <NewStickyNoteModal display={this.state.stickyNoteModalDisplay} newStickyNote={this.storenewStickyNote} closeModal={(e) => {this.setState({stickyNoteModalDisplay:"none"})}} />
             </div>
         </div>
-        );
+            );
+        }
     }
 }
 export default StickyBoard;
