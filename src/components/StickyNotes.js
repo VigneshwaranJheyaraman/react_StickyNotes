@@ -156,14 +156,18 @@ export class StickyNotes extends Component
     startDrag(value,e)
     {
         e.dataTransfer.setData("key", value);
+        e.dataTransfer.setData("node", e.target.nodeName);
     }
     dropStickyNotes(e)
     {
-        var newStickynote = this.state.stickyNotes;
-        var key =parseInt(e.dataTransfer.getData("key"));
-        newStickynote[key].left=`${e.pageX-120}px`;
-        newStickynote[key].top = `${e.pageY}px`;
-        this.setState({stickyNote:newStickynote});
+        if(e.dataTransfer.getData("node") === "BUTTON")
+        {
+            var newStickynote = this.state.stickyNotes;
+            var key =parseInt(e.dataTransfer.getData("key"));
+            newStickynote[key].left=`${e.pageX-120}px`;
+            newStickynote[key].top = `${e.pageY}px`;
+            this.setState({stickyNote:newStickynote});
+        }
     }
     render()
     {
@@ -175,7 +179,7 @@ export class StickyNotes extends Component
                 closeClick = {(e)=> {this.setState({helpAndTipsDisplay:"none"})}}/>
                 <Menu newTask={this.addNewNote} newCheckList ={this.checkList} left={this.state.menuLeft}
                 top={this.state.menuTop} display = {this.state.menuDisplay} onlyOneTask={false}/>
-                <div className="add-button">
+                <div className="add-button" draggable={false}>
                     <Link to={path} target="_blank"><Button className="btn add" iclassName="fa fa-plus" onClick={(e) => {this.setState({boardCount:bc+=1})}}/></Link>
                 </div>
                 <div>

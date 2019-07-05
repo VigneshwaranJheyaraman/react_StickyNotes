@@ -63,6 +63,7 @@ class StickyBoard extends Component
     dropStickyNotes(e)
     {
         //insert the stickyNotes in position
+        console.log(e.target);
         var stickyId = parseInt(e.dataTransfer.getData("key"));
         var updatedStickyNote = this.state.stickyBoard.sNotes[stickyId];
         updatedStickyNote.left =  `${e.pageX-120 / 2}px`;
@@ -84,6 +85,7 @@ class StickyBoard extends Component
     {
         //send the key value of the sticky note;
         e.dataTransfer.setData("key", value);
+        console.log(e.target);
     }
     storenewStickyNote(newStickyNote)
     {
@@ -121,7 +123,7 @@ class StickyBoard extends Component
         }
         else
         {
-            var tvalue = prompt("Enter the note " + titleOrNote)
+            tvalue = prompt("Enter the note " + titleOrNote)
             tvalue= tvalue !== "" && tvalue !== null? tvalue: this.state.BoardId;
         }
         var updatedStickyNotes = Object.entries(Object.assign({}, this.state.stickyBoard.sNotes)).map((k,v) => {
@@ -153,7 +155,7 @@ class StickyBoard extends Component
     {
         if (parseInt(localStorage.getItem("nB")) < parseInt(this.props.match.params.id))
         {
-            localStorage.removeItem(`board${this.props.match.params.id}`);
+            localStorage.removeItem(`board${this.props.match.params.id}`); 
             return <div><h2>404 Not Found.</h2></div>
         }
         else
