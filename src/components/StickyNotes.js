@@ -157,6 +157,8 @@ export class StickyNotes extends Component
     {
         e.dataTransfer.setData("key", value);
         e.dataTransfer.setData("node", e.target.nodeName);
+        e.dataTransfer.setData("oH", e.target.offsetWidth);
+        e.dataTransfer.setData("oW", e.target.offsetHeight);
     }
     dropStickyNotes(e)
     {
@@ -164,8 +166,8 @@ export class StickyNotes extends Component
         {
             var newStickynote = this.state.stickyNotes;
             var key =parseInt(e.dataTransfer.getData("key"));
-            newStickynote[key].left=`${e.pageX-120}px`;
-            newStickynote[key].top = `${e.pageY}px`;
+            newStickynote[key].left=`${e.pageX-(parseInt(e.dataTransfer.getData("oW"))) / 2}px`;
+            newStickynote[key].top = `${e.pageY - (parseInt(e.dataTransfer.getData("oH"))) / 2}px`;
             this.setState({stickyNote:newStickynote});
         }
     }
